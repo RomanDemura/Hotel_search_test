@@ -5,6 +5,8 @@ import tech.demura.hotelsearch.domain.entity.Hotel
 import javax.inject.Inject
 
 class HotelMapper @Inject constructor() {
+
+    // MAP MODEL TO ENTITY
     fun mapHotelModelToHotel(model: HotelResponseDto): Hotel {
         return Hotel(
             id = model.id,

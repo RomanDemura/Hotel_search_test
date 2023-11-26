@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,19 +26,18 @@ fun DateTextField(
     maskChar: Char = '*',
     isDateChanged: (String) -> Unit,
     isValid: Boolean = true
-){
-    fun isValidDate(date: String): Boolean {
-        val dateLength = mask.count{ it == maskChar }
-        val dateRegex = "^(\\d{$dateLength})\$".toRegex()
-        return date.matches(dateRegex)
-    }
-
+) {
+//    fun isValidDate(date: String): Boolean {
+//        val dateLength = mask.count { it == maskChar }
+//        val dateRegex = "^(\\d{$dateLength})\$".toRegex()
+//        return date.matches(dateRegex)
+//    }
 
     var isChanged by remember {
         mutableStateOf(false)
     }
 
-    val valid = if (isChanged){
+    val valid = if (isChanged) {
         isValid
     } else {
         true
@@ -51,10 +49,13 @@ fun DateTextField(
         },
         value = date,
         onValueChange = {
-            val trimmed = it.take(mask.count{ char -> char == maskChar })
+            val trimmed = it.take(mask.count { char -> char == maskChar })
             isDateChanged(trimmed)
             isChanged = true
 
+        },
+        placeholder = {
+            Text(text = "dd.mm.yyyy")
         },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),

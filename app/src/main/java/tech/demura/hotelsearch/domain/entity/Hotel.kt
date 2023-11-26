@@ -1,7 +1,5 @@
 package tech.demura.hotelsearch.domain.entity
 
-import tech.demura.hotelsearch.data.retrofit.model.hotel.AboutTheHotelDto
-
 data class Hotel(
     val id: Int = 0,
     val name: String = "",

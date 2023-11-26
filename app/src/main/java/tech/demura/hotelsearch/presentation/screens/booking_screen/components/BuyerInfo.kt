@@ -1,13 +1,10 @@
 package tech.demura.hotelsearch.presentation.screens.booking_screen.components
 
-import android.service.autofill.DateTransformation
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,8 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import tech.demura.hotelsearch.presentation.views.PairRow
-import tech.demura.hotelsearch.presentation.views.text_fields.DateTextField
 import tech.demura.hotelsearch.presentation.views.text_fields.EmailTextField
 import tech.demura.hotelsearch.presentation.views.text_fields.PhoneTextField
 
@@ -27,15 +22,17 @@ import tech.demura.hotelsearch.presentation.views.text_fields.PhoneTextField
 fun BuyerInfo(
     isPhoneValid: (Boolean) -> Unit,
     isEmailValid: (Boolean) -> Unit
-) { // TODO ( Change Name )
+) {
     var phoneNumber by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
 
-     Card(
-         colors = CardDefaults.cardColors(
-             containerColor = Color.White
-         )
-     ) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        )
+    ) {
+
+        //BUYER INFO HEADER
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "Информация о покупателе",
@@ -43,6 +40,8 @@ fun BuyerInfo(
             fontWeight = FontWeight(500)
         )
         Spacer(modifier = Modifier.height(16.dp))
+
+        // PHONE FIELD
         PhoneTextField(
             phone = phoneNumber,
             mask = "+7 (***) ***-**-**",
@@ -51,6 +50,8 @@ fun BuyerInfo(
             isValid = isPhoneValid
         )
         Spacer(modifier = Modifier.height(8.dp))
+
+        // EMAIL FIELD
         EmailTextField(
             email = email,
             onEmailChange = { email = it },

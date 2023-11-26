@@ -2,7 +2,6 @@ package tech.demura.hotelsearch.presentation.screens.booking_screen
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,9 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Button
@@ -37,9 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import tech.demura.hotelsearch.domain.entity.BookingInfo
 import tech.demura.hotelsearch.domain.entity.BookingScreenState
-import tech.demura.hotelsearch.domain.entity.Hotel
 import tech.demura.hotelsearch.domain.entity.Tourist
 import tech.demura.hotelsearch.presentation.ViewModelFactory
 import tech.demura.hotelsearch.presentation.screens.booking_screen.components.AddTouristRow
@@ -81,15 +76,15 @@ fun BookingScreen(
                 }
             )
         }
-    ) { it ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(it)
-                .padding(horizontal = 16.dp)
-                .padding(bottom = 16.dp)
-        ) {
-            when (currentState) {
-                is BookingScreenState.Info -> {
+    ) { paddingValue ->
+        when (currentState) {
+            is BookingScreenState.Info -> {
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(paddingValue)
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 16.dp)
+                ) {
                     item {
                         val bookingInfo = currentState.bookingInfo
                         // FOOTER HOTEL INFO
@@ -156,23 +151,19 @@ fun BookingScreen(
                             )
                         }
                     }
-
-                }
-
-                else -> {
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                        ) {
-                            CircularProgressIndicator()
-                        }
-                    }
-
                 }
             }
 
-
+            else -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValue)
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
         }
     }
 }
+

@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -32,6 +30,8 @@ fun AddTouristRow(
             .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
+        // ADD TOURIST TEXT
         Text(
             modifier = Modifier.weight(1f),
             text = "Добавить туриста",
@@ -39,7 +39,7 @@ fun AddTouristRow(
             fontWeight = FontWeight(500)
         )
 
-        // ADD TOURIST
+        // ADD TOURIST BUTTON
         Button(
             onClick = {
                 addTourist()

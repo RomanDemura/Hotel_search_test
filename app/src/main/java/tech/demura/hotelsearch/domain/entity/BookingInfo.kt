@@ -1,7 +1,5 @@
 package tech.demura.hotelsearch.domain.entity
 
-import com.google.gson.annotations.SerializedName
-
 data class BookingInfo(
     val id: Int = 0,
     val hotel_name: String = "",

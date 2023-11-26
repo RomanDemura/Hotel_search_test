@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -27,11 +25,7 @@ fun HotelCard(
     hotel: Hotel,
     onButtonClick: (hotelName: String) -> Unit
 ) {
-    Column(
-        //modifier = Modifier.verticalScroll(rememberScrollState()),
-
-    ) {
-        val modifier = Modifier.padding(horizontal = 16.dp)
+    Column {
         Card(
             shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp),
             colors = CardDefaults.cardColors(

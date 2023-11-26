@@ -3,7 +3,6 @@ package tech.demura.hotelsearch.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import tech.demura.hotelsearch.domain.entity.Hotel
 
 @Composable
 fun AppNavGraph(

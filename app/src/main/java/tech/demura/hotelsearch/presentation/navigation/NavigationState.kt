@@ -9,20 +9,23 @@ import androidx.navigation.compose.rememberNavController
 class NavigationState(
     val navHostController: NavHostController
 ) {
+    // NAVIGATE TO ROUTE
     fun navigateTo(route: String) {
         navHostController.navigate(route = route) {
             launchSingleTop = true
         }
     }
 
+    // NAVIGATE TO ROOMS SCREEN (WITH ARGS)
     fun navigateToRoomsScreen(hotelName: String) {
-        navHostController.navigate(Screen.RoomsScreen.getRouteWithHotel(hotelName)){
+        navHostController.navigate(Screen.RoomsScreen.getRouteWithHotel(hotelName)) {
             launchSingleTop = true
         }
     }
 
-    fun popUpToStart(){
-        navHostController.navigate(Screen.HotelScreen.route){
+    // NAVIGATE TO START, WITH POP UP TO START
+    fun popUpToStart() {
+        navHostController.navigate(Screen.HotelScreen.route) {
             popUpTo(navHostController.graph.findStartDestination().id) {
                 saveState = true
             }
@@ -31,6 +34,7 @@ class NavigationState(
     }
 }
 
+// REMEMBER NAV STATE
 @Composable
 fun rememberNavigationState(
     navHostController: NavHostController = rememberNavController()

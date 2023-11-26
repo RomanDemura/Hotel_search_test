@@ -20,7 +20,6 @@ import tech.demura.hotelsearch.extensions.toPriceString
 import tech.demura.hotelsearch.presentation.views.FooterHotelInfo
 import tech.demura.hotelsearch.presentation.views.Pager
 
-
 @Composable
 fun HotelInfo(hotel: Hotel) {
     Column(

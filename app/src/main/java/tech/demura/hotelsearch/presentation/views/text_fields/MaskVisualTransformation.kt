@@ -53,7 +53,12 @@ class MaskVisualTransformation(val mask: String, val maskChar: Char) : VisualTra
     }
 }
 
-private class MaskOffsetMapper(val mask: String, val numberChar: Char, val text: String, val annotatedString: AnnotatedString) :
+private class MaskOffsetMapper(
+    val mask: String,
+    val numberChar: Char,
+    val text: String,
+    val annotatedString: AnnotatedString
+) :
     OffsetMapping {
 
     override fun originalToTransformed(offset: Int): Int {
@@ -63,8 +68,8 @@ private class MaskOffsetMapper(val mask: String, val numberChar: Char, val text:
         while (i <= offset + noneDigitCount && i < mask.length) {
             if (mask[i++] != numberChar) noneDigitCount++
         }
-        if (text.length == 0){
-            noneDigitCount
+        if (text.length == 0) {
+            return noneDigitCount
         }
         if (offset > text.length)
             return text.length + noneDigitCount

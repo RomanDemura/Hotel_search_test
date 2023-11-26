@@ -11,15 +11,15 @@ import kotlinx.coroutines.flow.stateIn
 import tech.demura.hotelsearch.data.retrofit.mapper.BookingInfoMapper
 import tech.demura.hotelsearch.data.retrofit.network.ApiService
 import tech.demura.hotelsearch.domain.entity.BookingInfo
-import tech.demura.hotelsearch.domain.entity.Hotel
 import tech.demura.hotelsearch.domain.repository.BookingRepository
-import tech.demura.hotelsearch.extensions.mergeWith
 import javax.inject.Inject
 
 class BookingRepositoryImpl @Inject constructor(
     val apiService: ApiService,
     val bookingInfoMapper: BookingInfoMapper
-): BookingRepository {
+) : BookingRepository {
+
+    //SCOPE
     val coroutineScope = CoroutineScope(Dispatchers.Default)
 
     // BOOKING INFO CONTAINER
@@ -30,7 +30,7 @@ class BookingRepositoryImpl @Inject constructor(
     // BOOKING INFO FLOW
     private val nextBookingInfoNeededEvent = MutableSharedFlow<Unit>(replay = 1)
     private val loadedBookingInfoFlow = flow {
-        loadNextBookingInfo()
+        nextBookingInfoNeededEvent.emit(Unit)
         nextBookingInfoNeededEvent.collect {
             _bookingInfo = getBookingInfo()
             emit(bookingInfo)
@@ -44,7 +44,8 @@ class BookingRepositoryImpl @Inject constructor(
                 initialValue = bookingInfo
             )
 
-    private suspend fun getBookingInfo(): BookingInfo{
+    // DOWNLOAD DATA
+    private suspend fun getBookingInfo(): BookingInfo {
         val defBookingInfo = coroutineScope.async {
             apiService.getBookingInfo()
         }
@@ -52,10 +53,7 @@ class BookingRepositoryImpl @Inject constructor(
         return bookingInfoMapper.mapBookingInfoModelToBookingInfo(response)
     }
 
-    suspend fun loadNextBookingInfo() {
-        nextBookingInfoNeededEvent.emit(Unit)
-    }
-
+    // RETURN STATE FLOW
     override fun getBookingInfoStateFlow(): StateFlow<BookingInfo> =
         bookingInfoFlow
 }

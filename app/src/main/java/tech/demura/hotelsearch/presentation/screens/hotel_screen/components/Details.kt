@@ -18,13 +18,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tech.demura.hotelsearch.R
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Details() {
     Column(
         modifier = Modifier.padding(horizontal = 16.dp)
     ) {
+
         // УДОБСТВА
         ListItem(
             leadingContent = {
