@@ -1,6 +1,5 @@
 package tech.demura.hotelsearch.presentation.screens.booking_screen.components
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
@@ -8,32 +7,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import tech.demura.hotelsearch.domain.entity.BookingInfo
 import tech.demura.hotelsearch.extensions.toPriceString
-import tech.demura.hotelsearch.presentation.views.PricePairRow
+import tech.demura.hotelsearch.presentation.views.ThemedCard
+import tech.demura.hotelsearch.presentation.views.rows.PricePairRow
 
 @Composable
-fun PriceInfo(bookingInfo: BookingInfo) {
-    Column {
+fun PriceInfoCard(bookingInfo: BookingInfo) {
+    ThemedCard {
         // TOUR
         PricePairRow(
             leftText = "Тур",
-            rightText = bookingInfo.tour_price.toPriceString(),
-            isFinalPrice = false
+            rightText = bookingInfo.tour_price.toPriceString()
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // FUEL CHARGE
         PricePairRow(
             leftText = "Топливный сбор",
-            rightText = bookingInfo.fuel_charge.toPriceString(),
-            isFinalPrice = false
+            rightText = bookingInfo.fuel_charge.toPriceString()
         )
         Spacer(modifier = Modifier.height(8.dp))
 
         // SERVICE CHARGE
         PricePairRow(
             leftText = "Сервисный сбор",
-            rightText = bookingInfo.service_charge.toPriceString(),
-            isFinalPrice = false
+            rightText = bookingInfo.service_charge.toPriceString()
         )
         Spacer(modifier = Modifier.height(8.dp))
 

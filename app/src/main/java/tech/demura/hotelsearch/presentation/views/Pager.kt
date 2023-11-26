@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -35,7 +37,11 @@ import kotlin.math.absoluteValue
 fun Pager(urls: List<String>) {
     val pagerState = rememberPagerState { urls.size }
 
-    Box() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(250.dp)
+    ) {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier

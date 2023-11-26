@@ -1,4 +1,4 @@
-package tech.demura.hotelsearch.presentation.views
+package tech.demura.hotelsearch.presentation.views.rows
 
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow

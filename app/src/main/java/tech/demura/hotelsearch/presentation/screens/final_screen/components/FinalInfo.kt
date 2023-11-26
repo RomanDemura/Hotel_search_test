@@ -9,13 +9,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tech.demura.hotelsearch.R
+import tech.demura.hotelsearch.presentation.views.texts.DescriptionText
 
 @Composable
 fun ColumnScope.FinalInfo() {
@@ -39,13 +39,11 @@ fun ColumnScope.FinalInfo() {
         )
 
         // FINAL DESCRIPTION
-        Text(
+        DescriptionText(
             text = "Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.",
-            color = Color(0xFF828796),
-            textAlign = TextAlign.Center,
-            fontSize = 16.sp,
-            fontWeight = FontWeight(400)
+            textAlign = TextAlign.Center
         )
+
         Spacer(modifier = Modifier.weight(1f))
     }
 }

@@ -1,43 +1,27 @@
 package tech.demura.hotelsearch.presentation.screens.hotel_screen.components
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import tech.demura.hotelsearch.domain.entity.Hotel
 import tech.demura.hotelsearch.extensions.toPriceString
 import tech.demura.hotelsearch.presentation.views.FooterHotelInfo
 import tech.demura.hotelsearch.presentation.views.Pager
+import tech.demura.hotelsearch.presentation.views.ThemedCard
+import tech.demura.hotelsearch.presentation.views.rows.PriceRow
 
 @Composable
-fun HotelInfo(hotel: Hotel) {
-    Column(
-        modifier = Modifier.padding(horizontal = 16.dp)
-    ) {
+fun HotelInfoCard(hotel: Hotel) {
+    ThemedCard {
         // PAGER
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-        ) {
-            Pager(urls = hotel.image_urls)
-        }
+        Pager(urls = hotel.image_urls)
         Spacer(
             modifier = Modifier.height(16.dp)
         )
 
-        // FOOTER
+        // FOOTER HOTEL INFO
         FooterHotelInfo(
             name = hotel.name,
             rating = hotel.rating,
@@ -47,21 +31,10 @@ fun HotelInfo(hotel: Hotel) {
         Spacer(modifier = Modifier.height(8.dp))
 
         // PRICE
-        Row(
-            verticalAlignment = Alignment.Bottom
-        ) {
-            Text(
-                text = "от ${hotel.minimal_price.toPriceString()}",
-                fontSize = 30.sp,
-                fontWeight = FontWeight(600)
-            )
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(
-                text = hotel.price_for_it,
-                fontSize = 16.sp,
-                fontWeight = FontWeight(400)
-            )
-        }
+        PriceRow(
+            price = "от ${hotel.minimal_price.toPriceString()}",
+            pricePer = hotel.price_for_it
+        )
         Spacer(modifier = Modifier.height(8.dp))
     }
 }

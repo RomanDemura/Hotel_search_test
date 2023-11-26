@@ -1,17 +1,14 @@
 package tech.demura.hotelsearch.presentation.screens.booking_screen.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import tech.demura.hotelsearch.domain.entity.BookingInfo
-import tech.demura.hotelsearch.presentation.views.PairRow
+import tech.demura.hotelsearch.presentation.views.ThemedCard
+import tech.demura.hotelsearch.presentation.views.rows.PairRow
 
 @Composable
-fun TravelInfo(bookingInfo: BookingInfo) {
-    Column(
-        modifier = Modifier.fillMaxWidth()
-    ) {
+fun TravelInfoCard(bookingInfo: BookingInfo) {
+    ThemedCard {
+
         // DEPARTURE
         PairRow(
             leftText = "Вылет из",
