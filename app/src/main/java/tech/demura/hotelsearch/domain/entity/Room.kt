@@ -1,7 +1,5 @@
 package tech.demura.hotelsearch.domain.entity
 
-import com.google.gson.annotations.SerializedName
-
 data class Room(
     val id: Int,
     val name: String,

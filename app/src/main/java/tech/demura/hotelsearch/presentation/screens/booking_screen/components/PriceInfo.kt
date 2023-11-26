@@ -11,14 +11,37 @@ import tech.demura.hotelsearch.extensions.toPriceString
 import tech.demura.hotelsearch.presentation.views.PricePairRow
 
 @Composable
-fun PriceInfo(bookingInfo: BookingInfo){
+fun PriceInfo(bookingInfo: BookingInfo) {
     Column {
-        PricePairRow(leftText = "Тур", rightText = bookingInfo.tour_price.toPriceString(), isFinalPrice = false)
+        // TOUR
+        PricePairRow(
+            leftText = "Тур",
+            rightText = bookingInfo.tour_price.toPriceString(),
+            isFinalPrice = false
+        )
         Spacer(modifier = Modifier.height(8.dp))
-        PricePairRow(leftText = "Топливный сбор", rightText = bookingInfo.fuel_charge.toPriceString(), isFinalPrice = false)
+
+        // FUEL CHARGE
+        PricePairRow(
+            leftText = "Топливный сбор",
+            rightText = bookingInfo.fuel_charge.toPriceString(),
+            isFinalPrice = false
+        )
         Spacer(modifier = Modifier.height(8.dp))
-        PricePairRow(leftText = "Сервисный сбор", rightText = bookingInfo.service_charge.toPriceString(), isFinalPrice = false)
+
+        // SERVICE CHARGE
+        PricePairRow(
+            leftText = "Сервисный сбор",
+            rightText = bookingInfo.service_charge.toPriceString(),
+            isFinalPrice = false
+        )
         Spacer(modifier = Modifier.height(8.dp))
-        PricePairRow(leftText = "К оплате", rightText = bookingInfo.finalPrice.toPriceString(), isFinalPrice = true)
+
+        // TOTAL AMOUNT
+        PricePairRow(
+            leftText = "К оплате",
+            rightText = bookingInfo.finalPrice.toPriceString(),
+            isFinalPrice = true
+        )
     }
 }

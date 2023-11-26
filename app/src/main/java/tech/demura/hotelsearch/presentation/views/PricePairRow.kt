@@ -16,9 +16,11 @@ fun PricePairRow(
     leftText: String,
     rightText: String,
     isFinalPrice: Boolean
-){
+) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
     ) {
         Text(
             modifier = Modifier.weight(1f),

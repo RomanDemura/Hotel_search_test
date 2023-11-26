@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,12 +24,12 @@ fun SimpleTextField(
     labelText: String,
     isDateChanged: (String) -> Unit,
     isValid: Boolean
-){
+) {
     var isChanged by remember {
         mutableStateOf(false)
     }
 
-    val valid = if (isChanged){
+    val valid = if (isChanged) {
         isValid
     } else {
         true

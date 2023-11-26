@@ -6,6 +6,4 @@ import tech.demura.hotelsearch.domain.entity.Room
 interface RoomRepository {
 
     fun getRoomStateFlow(): StateFlow<List<Room>>
-
-    suspend fun loadNextRoom()
 }

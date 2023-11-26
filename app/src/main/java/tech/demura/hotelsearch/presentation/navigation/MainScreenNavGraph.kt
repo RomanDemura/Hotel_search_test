@@ -6,7 +6,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import tech.demura.hotelsearch.domain.entity.Hotel
 
 fun NavGraphBuilder.MainScreenNavGraph(
     hotelScreenContent: @Composable () -> Unit,
@@ -19,9 +18,13 @@ fun NavGraphBuilder.MainScreenNavGraph(
         route = Screen.MainScreen.route
 
     ) {
+
+        // HOTEL SCREEN DESTINATION
         composable(Screen.HotelScreen.route) {
             hotelScreenContent()
         }
+
+        // ROOMS SCREEN DESTINATION
         composable(route = Screen.RoomsScreen.route,
             arguments = listOf(
                 navArgument(name = Screen.KEY_HOTEL) {
@@ -32,10 +35,14 @@ fun NavGraphBuilder.MainScreenNavGraph(
             val hotelName = it.arguments?.getString(Screen.KEY_HOTEL) ?: "Hotel rooms"
             roomsScreenContent(hotelName)
         }
-        composable(route = Screen.BookingScreen.route){
+
+        // BOOKING SCREEN DESTINATION
+        composable(route = Screen.BookingScreen.route) {
             bookingScreenContent()
         }
-        composable(route = Screen.FinalScreen.route){
+
+        // FINAL SCREEN DESTINATION
+        composable(route = Screen.FinalScreen.route) {
             finalScreenContent()
         }
     }

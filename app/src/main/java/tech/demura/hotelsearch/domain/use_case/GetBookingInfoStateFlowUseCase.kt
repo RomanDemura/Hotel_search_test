@@ -6,7 +6,7 @@ import tech.demura.hotelsearch.domain.repository.BookingRepository
 import javax.inject.Inject
 
 class GetBookingInfoStateFlowUseCase @Inject constructor(private val repository: BookingRepository) {
-    operator fun invoke(): StateFlow<BookingInfo>{
+    operator fun invoke(): StateFlow<BookingInfo> {
         return repository.getBookingInfoStateFlow()
     }
 }

@@ -1,11 +1,8 @@
 package tech.demura.hotelsearch.presentation.views.chips
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
@@ -22,9 +19,9 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RatingChip(rating: Int, ratingName: String){
+fun RatingChip(rating: Int, ratingName: String) {
     AssistChip(
-        onClick = { /*TODO*/ },
+        onClick = { },
         label = {
             Text(
                 text = ratingName,

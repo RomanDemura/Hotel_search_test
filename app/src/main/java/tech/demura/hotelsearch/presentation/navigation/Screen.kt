@@ -1,29 +1,33 @@
 package tech.demura.hotelsearch.presentation.navigation
 
 import com.google.gson.Gson
-import tech.demura.hotelsearch.domain.entity.Hotel
 import tech.demura.hotelsearch.extensions.encode
 
 sealed class Screen(
     val route: String
-){
-    object MainScreen: Screen(ROUTE_MAIN_SCREEN)
+) {
+    // MAIN SCREEN
+    object MainScreen : Screen(ROUTE_MAIN_SCREEN)
 
-    object HotelScreen: Screen(ROUTE_HOTEL_SCREEN)
+    // HOTEL SCREEN
+    object HotelScreen : Screen(ROUTE_HOTEL_SCREEN)
 
-    object RoomsScreen: Screen(ROUTE_ROOMS_SCREEN){
+    // ROOMS SCREEN
+    object RoomsScreen : Screen(ROUTE_ROOMS_SCREEN) {
         private const val ROUTE_FOR_ARGS = "rooms_screen"
-        fun getRouteWithHotel(hotelName: String): String{
+        fun getRouteWithHotel(hotelName: String): String {
             val hotelNameJson = Gson().toJson(hotelName)
             return "$ROUTE_FOR_ARGS/${hotelNameJson.encode()}"
         }
     }
 
-    object BookingScreen: Screen(ROUTE_BOOKING_SCREEN)
+    // BOOKING SCREEN
+    object BookingScreen : Screen(ROUTE_BOOKING_SCREEN)
 
-    object FinalScreen: Screen(ROUTE_FINAL_SCREEN)
+    // FINAL SCREEN
+    object FinalScreen : Screen(ROUTE_FINAL_SCREEN)
 
-    companion object{
+    companion object {
         const val KEY_HOTEL = "hotel"
 
         const val ROUTE_MAIN_SCREEN = "main_screen"

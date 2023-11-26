@@ -1,14 +1,9 @@
 package tech.demura.hotelsearch.presentation.screens.hotel_screen.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,8 +13,6 @@ import androidx.compose.ui.unit.sp
 import tech.demura.hotelsearch.domain.entity.Hotel
 import tech.demura.hotelsearch.presentation.views.TagsRow
 
-
-@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun AboutTheHotel(hotel: Hotel) {
     Column(

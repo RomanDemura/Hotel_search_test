@@ -7,6 +7,6 @@ fun String.encode(): String {
     return Uri.encode(this)
 }
 
-fun String.removeQuotes(): String{
+fun String.removeQuotes(): String {
     return this.trim('"')
 }

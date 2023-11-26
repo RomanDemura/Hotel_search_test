@@ -1,6 +1,5 @@
 package tech.demura.hotelsearch.di
 
-import android.app.Application
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
@@ -18,7 +17,7 @@ interface ApplicationComponent {
     fun inject(activity: MainActivity)
 
     @Component.Factory
-    interface ApplicationComponentFactory{
+    interface ApplicationComponentFactory {
 
         fun create(
             @BindsInstance context: Context

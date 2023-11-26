@@ -15,16 +15,8 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,12 +34,15 @@ fun TouristCard(
     isTouristChanged: (Tourist) -> Unit
 ) {
     Column {
+        // TOURIST HEADER
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+
+            // HEADER TEXT
             Text(
                 modifier = Modifier.weight(1f),
                 text = "${tourist.id.toWordInt()} турист",
@@ -55,12 +50,13 @@ fun TouristCard(
                 fontWeight = FontWeight(500)
             )
 
-            // COLLAPSE
+            // COLLAPSE BUTTON
             Button(
                 onClick = {
                     isTouristChanged(
                         tourist.copy(
-                            isCollapsed = !tourist.isCollapsed),
+                            isCollapsed = !tourist.isCollapsed
+                        ),
                     )
                 },
                 modifier = Modifier.size(32.dp),
@@ -78,8 +74,11 @@ fun TouristCard(
                 }
             }
         }
+
+        // TOURIST BODY
         if (!tourist.isCollapsed) {
-            //
+
+            // TOURIST NAME FIELD
             SimpleTextField(
                 text = tourist.name,
                 labelText = "Имя",
@@ -95,7 +94,7 @@ fun TouristCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            // LAST NAME
+            // TOURIST LAST NAME FIELD
             SimpleTextField(
                 text = tourist.lastName,
                 labelText = "Фамилия",
@@ -111,7 +110,7 @@ fun TouristCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            // DATE OF BIRTH
+            // TOURIST DATE OF BIRTH FIELD
             DateTextField(
                 date = tourist.dateOfBirth,
                 labelText = "День рождения",
@@ -127,7 +126,7 @@ fun TouristCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            // CITIZENSHIP
+            // TOURIST CITIZENSHIP FIELD
             SimpleTextField(
                 text = tourist.citizenship,
                 labelText = "Гражданство",
@@ -144,7 +143,7 @@ fun TouristCard(
             Spacer(modifier = Modifier.height(8.dp))
 
 
-            // PASSPORT NUMBER
+            // TOURIST PASSPORT NUMBER FIELD
             SimpleTextField(
                 text = tourist.internationalPassport,
                 labelText = "Номер загранпаспорта",
@@ -160,7 +159,7 @@ fun TouristCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-            // PASSPORT VALID
+            // TOURIST PASSPORT VALID FIELD
             DateTextField(
                 date = tourist.validityPeriodOfThePassport,
                 labelText = "Срок действия загранпаспорта",
@@ -178,7 +177,8 @@ fun TouristCard(
     }
 }
 
-private fun dateValid(date: String): Boolean{
+// DATE VALIDATION
+private fun dateValid(date: String): Boolean {
     val dateLength = 8
     val phoneRegex = "^(\\d{$dateLength})\$".toRegex()
     return date.matches(phoneRegex)

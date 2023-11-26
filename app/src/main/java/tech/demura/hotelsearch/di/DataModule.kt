@@ -14,22 +14,28 @@ import tech.demura.hotelsearch.domain.repository.RoomRepository
 
 @Module
 interface DataModule {
+
+    // bind HOTEL repository
     @ApplicationScope
     @Binds
     fun bindHotelRepository(impl: HotelRepositoryImpl): HotelRepository
 
+    // bind ROOM repository
     @ApplicationScope
     @Binds
     fun bindRoomRepository(impl: RoomRepositoryImpl): RoomRepository
 
+    // bind BOOKING repository
     @ApplicationScope
     @Binds
     fun bindBookingRepository(impl: BookingRepositoryImpl): BookingRepository
 
-    companion object{
+    companion object {
+
+        // provide API SERVICE
         @ApplicationScope
         @Provides
-        fun provideApiService(): ApiService{
+        fun provideApiService(): ApiService {
             return ApiFactory.apiService
         }
     }

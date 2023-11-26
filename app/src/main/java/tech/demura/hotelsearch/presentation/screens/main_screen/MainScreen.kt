@@ -3,12 +3,12 @@ package tech.demura.hotelsearch.presentation.screens.main_screen
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import tech.demura.hotelsearch.presentation.ViewModelFactory
-import tech.demura.hotelsearch.presentation.screens.booking_screen.BookingScreen
-import tech.demura.hotelsearch.presentation.screens.final_screen.FinalScreen
-import tech.demura.hotelsearch.presentation.screens.hotel_screen.HotelScreen
 import tech.demura.hotelsearch.presentation.navigation.AppNavGraph
 import tech.demura.hotelsearch.presentation.navigation.Screen
 import tech.demura.hotelsearch.presentation.navigation.rememberNavigationState
+import tech.demura.hotelsearch.presentation.screens.booking_screen.BookingScreen
+import tech.demura.hotelsearch.presentation.screens.final_screen.FinalScreen
+import tech.demura.hotelsearch.presentation.screens.hotel_screen.HotelScreen
 import tech.demura.hotelsearch.presentation.screens.rooms_screen.RoomsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,6 +20,8 @@ fun MainScreen(
 
     AppNavGraph(
         navHostController = navigationState.navHostController,
+
+        // HOTEL SCREEN
         hotelScreenContent = {
             HotelScreen(
                 vmFactory = vmFactory,
@@ -28,6 +30,8 @@ fun MainScreen(
                 }
             )
         },
+
+        // ROOMS SCREEN
         roomsScreenContent = { hotelName ->
             RoomsScreen(
                 vmFactory = vmFactory,
@@ -40,6 +44,8 @@ fun MainScreen(
                 }
             )
         },
+
+        //BOOKING SCREEN
         bookingScreenContent = {
             BookingScreen(
                 vmFactory = vmFactory,
@@ -51,6 +57,8 @@ fun MainScreen(
                 }
             )
         },
+
+        //FINAL SCREEN
         finalScreenContent = {
             FinalScreen(
                 onBackPressed = {

@@ -48,61 +48,68 @@ fun RoomsScreen(
 
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = hotelName.removeQuotes(),
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        textAlign = TextAlign.Center
-                    )
-                    //Text(text = "Steingenberger Makadi")
-                },
-                navigationIcon = {
-                    IconButton(
-                        onClick = { onBackPressed() }
-                    ) {
-                        Icon(
-                            Icons.Filled.KeyboardArrowLeft, contentDescription = null
-                        )
-                    }
-                }
+            RoomsScreenTopBar(
+                hotelName = hotelName,
+                onBackPressed = onBackPressed
             )
         }
     ) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-        ) {
-            when (currentState) {
-                is RoomScreenState.RoomsInfo -> {
+        when (currentState) {
+            is RoomScreenState.RoomsInfo -> {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it)
+                ) {
                     items(
                         items = currentState.rooms
-                    ) {
+                    ) { room ->
                         RoomCard(
-                            room = it,
+                            room = room,
                             onButtonClick = onButtonClick
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
+            }
 
-                else -> {
-                    item {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                        ) {
-                            CircularProgressIndicator(
-                                modifier = Modifier
-                                    .size(80.dp)
-                                    .align(Alignment.Center)
-                            )
-                        }
-                    }
-
-
+            else -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .size(150.dp)
+                            .align(Alignment.Center)
+                    )
                 }
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RoomsScreenTopBar(
+    hotelName: String,
+    onBackPressed: () -> Unit
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = hotelName.removeQuotes(),
+                modifier = Modifier.padding(horizontal = 16.dp),
+                textAlign = TextAlign.Center
+            )
+        },
+        navigationIcon = {
+            IconButton(
+                onClick = { onBackPressed() }
+            ) {
+                Icon(
+                    Icons.Filled.KeyboardArrowLeft, contentDescription = null
+                )
+            }
+        }
+    )
 }
