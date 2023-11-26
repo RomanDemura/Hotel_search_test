@@ -1,81 +1,55 @@
 package tech.demura.hotelsearch.presentation.screens.booking_screen.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import tech.demura.hotelsearch.domain.entity.Tourist
 import tech.demura.hotelsearch.extensions.toWordInt
+import tech.demura.hotelsearch.presentation.views.ThemedCard
+import tech.demura.hotelsearch.presentation.views.buttons.SmallButtonWithIcon
+import tech.demura.hotelsearch.presentation.views.rows.ThemedRow
 import tech.demura.hotelsearch.presentation.views.text_fields.DateTextField
 import tech.demura.hotelsearch.presentation.views.text_fields.SimpleTextField
+import tech.demura.hotelsearch.presentation.views.texts.HeaderText
 
 @Composable
 fun TouristCard(
     tourist: Tourist,
     isTouristChanged: (Tourist) -> Unit
 ) {
-    Column {
+    ThemedCard {
         // TOURIST HEADER
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+        ThemedRow {
 
             // HEADER TEXT
-            Text(
-                modifier = Modifier.weight(1f),
+            HeaderText(
                 text = "${tourist.id.toWordInt()} турист",
-                fontSize = 24.sp,
-                fontWeight = FontWeight(500)
+                modifier = Modifier.weight(1f)
             )
 
             // COLLAPSE BUTTON
-            Button(
+            SmallButtonWithIcon(
+                imageVector =
+                if (tourist.isCollapsed)
+                    Icons.Filled.KeyboardArrowDown
+                else
+                    Icons.Filled.KeyboardArrowUp,
                 onClick = {
                     isTouristChanged(
                         tourist.copy(
                             isCollapsed = !tourist.isCollapsed
                         ),
                     )
-                },
-                modifier = Modifier.size(32.dp),
-                shape = RoundedCornerShape(6.dp),
-                contentPadding = PaddingValues(0.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0x1A0D72FF),
-                    contentColor = Color(0xFF0D72FF)
-                )
-            ) {
-                if (tourist.isCollapsed) {
-                    Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null)
-                } else {
-                    Icon(Icons.Filled.KeyboardArrowUp, contentDescription = null)
                 }
-            }
+            )
         }
 
-        // TOURIST BODY
+        // TOURIST CARD BODY
         if (!tourist.isCollapsed) {
 
             // TOURIST NAME FIELD

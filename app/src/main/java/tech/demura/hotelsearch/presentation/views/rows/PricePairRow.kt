@@ -1,4 +1,4 @@
-package tech.demura.hotelsearch.presentation.views
+package tech.demura.hotelsearch.presentation.views.rows
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,9 +12,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun PairRow(
+fun PricePairRow(
     leftText: String,
-    rightText: String
+    rightText: String,
+    isFinalPrice: Boolean = false
 ) {
     Row(
         modifier = Modifier
@@ -22,18 +23,17 @@ fun PairRow(
             .padding(vertical = 4.dp)
     ) {
         Text(
-            modifier = Modifier.weight(2f),
+            modifier = Modifier.weight(1f),
             text = leftText,
             fontSize = 16.sp,
             fontWeight = FontWeight(400),
             color = Color(0xFF828796)
         )
         Text(
-            modifier = Modifier.weight(3f),
             text = rightText,
             fontSize = 16.sp,
             fontWeight = FontWeight(400),
-            color = Color(0xFF000000)
+            color = if (isFinalPrice) Color(0xFF0D72FF) else Color(0xFF000000)
         )
     }
 }
